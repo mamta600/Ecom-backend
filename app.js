@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const {User} = require('./model/User');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {Product} = require('./model/Product')
 const cors = require('cors');
@@ -14,13 +14,16 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan('dev'))
 
+let MONGODB_URL = "mongodb+srv://mamtagadekar1436:vE35jCkLG6RNk7zL@cluster0.ijuvn.mongodb.net/?retryWrites=true&w=majority"
 
-mongoose.connect('mongodb://127.0.0.1:27017/kleProject')
+mongoose.connect(MONGODB_URL)
 .then(()=>{
     console.log("DB is connected")
 }).catch((err)=>{
     console.log("DB is not connected",err)
 })
+
+// vE35jCkLG6RNk7zL
     
 
 //task-1 create a route for register user
